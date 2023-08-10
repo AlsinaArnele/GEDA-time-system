@@ -112,10 +112,52 @@ body{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px inset;
 }
 .sector{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    row-gap: 1vh;
+    align-items: center;
     height: 54vh;
     width: 27%;
     background-color: aliceblue;
     margin-top: 5vh;
     border-radius: 1.5vh;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px 0px;
+}
+.sector:first-child{
+    overflow-y: scroll;
+}
+.sector h1{
+    font-weight: 400;
+    margin: unset;
+    padding: unset;
+}
+.tasks{
+    padding: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    height: 10vh;
+    background-color: rgba(225, 71, 71, 0.1);
+}
+.tasks:last-child{
+    display: flex;
+    justify-content: space-around;
+    border: 1px dotted rgba(225, 71, 71, 1);
+    position: sticky;
+    bottom: 0;
+    background-color: transparent;
+}
+.tasks button{
+    height: 10vh;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+.tasks h1{
+    font-size: 1vh;
+    font-weight: 500;
+    margin: unset;
+    padding: unset;
 }
