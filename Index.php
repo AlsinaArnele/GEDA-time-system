@@ -22,6 +22,23 @@
                 <li><a href="">News</a></li>
             </ul>
         </div>
+        <div id="add-task" class="background">
+            <form action="actions/addtask.php" method="post" class="add-task">
+                <div class="input">
+                    <h1>Task title</h1>
+                    <input type="text" name="task-title" placeholder="enter task title">
+                </div>
+                <div class="input">
+                    <h1>Task description</h1>
+                    <input type="text" name="task-desc" placeholder="Enter task description">
+                </div>
+                <div class="buttonss">
+                    <button type="submit">+ Create Task</button>
+                    <button type="reset" onclick="addTask()"> Cancel </button>
+                </div>
+            </form>
+        </div>
+
         <div class="main">
             <div class="top">
                 <div class="header">
@@ -68,122 +85,35 @@
             <div class="bottom">
                 <div class="sector">
                     <H1>Pending tasks</H1>
-                    <div class="tasks">
+                    <!-- <div class="tasks">
                         <h1>DCA Portal</h1>
                         <ul>
                             <li>Create UI design</li>
                             <li>Implement system</li>
                         </ul>
-                    </div>
-                    <div class="tasks">
-                        <h1></h1>
-                        <ul>
-                            <li>Create UI design</li>
-                            <li>Implement system</li>
-                        </ul>
-                    </div>
-                    <div class="tasks">
-                        <h1></h1>
-                        <ul>
-                            <li>Create UI design</li>
-                            <li>Implement system</li>
-                        </ul>
-                    </div>
-                    <div class="tasks">
-                        <h1></h1>
-                        <ul>
-                            <li>Create UI design</li>
-                            <li>Implement system</li>
-                        </ul>
-                    </div>
-                    <div class="tasks">
-                        <h1></h1>
-                        <ul>
-                            <li>Create UI design</li>
-                            <li>Implement system</li>
-                        </ul>
-                    </div>
-                    <div class="tasks">
-                        <h1></h1>
-                        <ul>
-                            <li>Create UI design</li>
-                            <li>Implement system</li>
-                        </ul>
-                    </div>
-                    <div class="tasks">
-                        <h1></h1>
-                        <ul>
-                            <li>Create UI design</li>
-                            <li>Implement system</li>
-                        </ul>
-                    </div>
-                    <div class="tasks">
-                        <h1></h1>
-                        <ul>
-                            <li>Create UI design</li>
-                            <li>Implement system</li>
-                        </ul>
-                    </div>
+                    </div> -->
+                    <?php
+                    include 'actions/fetch-tasks.php';
+                    echo $html; ?>
                     <div class="tasks-button">
-                        <Button>Add new</Button>
+                        <Button onclick="addTask()">Add new</Button>
                     </div>
                 </div>
                 <div class="sector">
-                    <canvas id="arcCanvas" width="400" height="200"></canvas>
-                    <script src="js/main.js"></script>
-                    <button id="timer-button">Start</button>
+                    <div id="timer-display" class="card">
+                        0:00
+                    </div>
+                    <div class="timer-buttonss">
+                        <button id="timer-button" onclick="startTimer()">Start</button>
+                        <button id="timer-button2" onclick="stopTimer()">Stop</button>
+                        <button id="timer-button3" onclick="stopTimer()">Reset</button>
+                    </div>
                 </div>
                 <div class="sector">
                     <h1>Completed tasks</h1>
-                    <div class="c-tasks">
-                        <h1></h1>
-                        <ul>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="c-tasks">
-                        <h1></h1>
-                        <ul>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="c-tasks">
-                        <h1></h1>
-                        <ul>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="c-tasks">
-                        <h1></h1>
-                        <ul>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="c-tasks">
-                        <h1></h1>
-                        <ul>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="c-tasks">
-                        <h1></h1>
-                        <ul>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="c-tasks">
-                        <h1></h1>
-                        <ul>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
+                    <?php
+                    include 'actions/fetch-tasks.php';
+                    echo $html2; ?>
                 </div>
             </div>
         </div>

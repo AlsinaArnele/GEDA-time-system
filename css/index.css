@@ -156,10 +156,14 @@ body{
 }
 .sector:first-child{
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .sector:last-child{
     height: 44vh;
     overflow-y: scroll;
+}
+.sector:nth-child(2){
+    justify-content: space-evenly;
 }
 .sector h1{
     width: 90%;
@@ -172,6 +176,9 @@ body{
     background-color: white;
     /* margin-left: 2vw; */
 }
+.sector .card{
+    width: 25vw;
+}
 .tasks{
     padding: unset;
     display: flex;
@@ -180,6 +187,7 @@ body{
     align-items: center;
     width: 90%;
     min-height: 10vh;
+    max-height: 10vh;
     background-color: rgba(225, 71, 71, 0.1);
     transition: all .3s ease;
 }
@@ -249,10 +257,18 @@ body{
     font-size: 1vh;
 }
 .c-tasks h1{
-    font-size: 1vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    all: unset;
+    font-size: 1.3vw;
     font-weight: 500;
-    margin: unset;
-    padding: unset;
+    margin-top: 1vh;
+    padding: 0;
+    width: 100%;
+    height: 4vh;
+    margin-left: 1vw;
+    color: rgba(225, 71, 71, 1);
 }
 .c-tasks h1{
     all: unset;
@@ -299,19 +315,87 @@ body{
     align-items: center;
     color: #FFFFFF;
 }
-
-#timer-button{
-    width: 15vw;
+.timer-buttonss{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 35vw;
+    column-gap: 1vw;
+}
+#timer-button,#timer-button2,#timer-button3{
+    width: 13vw;
     height: 7vh;
     border: none;
     font-size: 4vh;
     transition: all .6s ease;
+    /* display: ; */
 }
 #timer-button:hover{
+    display: block;
     transform: scale(1.02);
     color: white;
     background-color: green;
 }
-#arcCanvas{
-    transform: rotate(180deg);
+#timer-button2:hover{
+    display: block;
+    transform: scale(1.02);
+    color: white;
+    background-color: red;
+}
+#timer-button3{
+    display: none;
+}
+#timer-button3:hover{
+    transform: scale(1.02);
+    color: white;
+    background-color: blue;
+}
+.add-task{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* top: 20vh; */
+    /* left: 35vw; */
+    width: 35vw;
+    height: 35vw;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px inset;
+    z-index: 100;
+    background-color:  #FFFFFF;
+}
+.input input{
+    width: 27vw;
+    height: 10vh;
+    padding-left: 3vw;
+}
+.input:first-child input{
+    width: 27vw;
+    height: 8vh;
+    padding-left: 3vw;
+}
+.buttonss button{
+    width: 14vw;
+    height: 7vh;
+    margin-top: 1vh;
+}
+#add-task{
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* filter: blur(30px); */
+    z-index: 99;
+}
+.buttonss{
+    width: 30vw;
+    display: flex;
+    justify-content: space-between;
+}
+#timer-display{
+    font-size: 4vw;
 }

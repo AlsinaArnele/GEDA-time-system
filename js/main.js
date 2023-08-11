@@ -18,38 +18,79 @@ function updateDateTime() {
 }
 setInterval(updateDateTime, 1000);
 
-const canvas = document.getElementById('arcCanvas');
-const ctx = canvas.getContext('2d');
+function addTask(){
+    var background = document.getElementById('add-task');
 
-const centerX = canvas.width / 2;
-const centerY = canvas.height /canvas.height;
-const radius = 180;
-const startAngle = 0;
-const endAngle = 0;
-const totalTime = 8 * 60 * 60 * 1000;
-const incrementAngle = (Math.PI * 2) / (totalTime/100);
-
-let animationStartTime;
-
-function drawArc(timestamp) {
-    if (!animationStartTime) {
-        animationStartTime = timestamp;
-    }
-
-    const elapsedTime = timestamp - animationStartTime;
-    const angle = elapsedTime * incrementAngle;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, startAngle, angle);
-    ctx.strokeStyle = 'green';
-    ctx.lineWidth = 10;
-    ctx.stroke();
-
-    if (angle < Math.PI * 2) {
-        requestAnimationFrame(drawArc);
+    if(background.style.display == "none"){
+        background.style.display = "flex";
+    }else{
+        background.style.display = "none"
     }
 }
 
-requestAnimationFrame(drawArc);
+var startTime = 0;
+var running = false;
 
+function startTimer() {
+    if (!running) {
+        running = true;
+        startTime = new Date().getTime();
+        updateTimer();
+
+        var xhr = new XMLHttpRequest();
+
+        var data = "variable=" + encodeURIComponent(startTime);
+
+        xhr.open("POST", "../actions/time.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                } else {
+                    console.error("Request failed with status: " + xhr.status);
+                }
+            }
+        };
+
+        xhr.send(data);
+    }
+}
+
+function stopTimer() {
+    running = false;
+    document.getElementById("timer-button1").style.display = "none";
+    document.getElementById("timer-button3").style.display = "block";
+
+    var xhr = new XMLHttpRequest();
+
+        stopTime = new Date().getTime();
+        var data = "variable2=" + encodeURIComponent(stopTime);
+
+        xhr.open("POST", "../actions/time.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                } else {
+                    console.error("Request failed with status: " + xhr.status);
+                }
+            }
+        };
+
+        xhr.send(data);
+}
+
+function updateTimer() {
+    if (running) {
+        var currentTime = new Date().getTime();
+        var elapsedTime = new Date(currentTime - startTime);
+        var minutes = elapsedTime.getMinutes();
+        var seconds = elapsedTime.getSeconds();
+        document.getElementById("timer-display").innerHTML = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+        setTimeout(updateTimer, 1000);
+    }
+}
