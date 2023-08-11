@@ -186,7 +186,7 @@ body{
 .tasks:hover{
     min-height: 15vh;
 }
-.tasks:hover li{
+.tasks:hover ul{
     display: flex;
 }
 .tasks-button{
@@ -217,23 +217,26 @@ body{
     font-weight: 500;
     margin-top: 1vh;
     padding: 0;
-    width: 100%;
+    width: 80%;
     height: 4vh;
     margin-left: 1vw;
     color: rgba(225, 71, 71, 1);
 }
 .tasks ul{
-    width: 100%;
+    width: 80%;
     height: 6vh;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: start;
+    padding-left: 1vh;
 }
 .tasks li{
-    display: none;
+    display: flex;
     font-size: 2vh;
     transition: all .3s ease;
+    margin-left: unset;
+    padding-left: unset;
 }
 .c-tasks{
     padding: unset;
