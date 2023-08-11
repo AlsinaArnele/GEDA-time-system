@@ -186,8 +186,8 @@ body{
 .tasks:hover{
     min-height: 15vh;
 }
-.tasks:hover .tasks ul{
-    display: block;
+.tasks:hover li{
+    display: flex;
 }
 .tasks-button{
     display: flex;
@@ -213,18 +213,27 @@ body{
     justify-content: start;
     align-items: center;
     all: unset;
-    font-size: 1vw;
+    font-size: 1.3vw;
     font-weight: 500;
-    margin-top: 0;
+    margin-top: 1vh;
     padding: 0;
     width: 100%;
     height: 4vh;
     margin-left: 1vw;
     color: rgba(225, 71, 71, 1);
 }
+.tasks ul{
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+}
 .tasks li{
     display: none;
     font-size: 2vh;
+    transition: all .3s ease;
 }
 .c-tasks{
     padding: unset;
@@ -232,10 +241,11 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     width: 90%;
-    height: 10vh;
+    min-height: 10vh;
     background-color: rgba(71, 71, 225, 0.1);
 }
 .c-tasks li{
+    display: none;
     font-size: 1vh;
 }
 .c-tasks h1{
