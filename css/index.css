@@ -14,9 +14,12 @@ body{
     display: flex;
 }
 #footer{
+    display: flex;
+    justify-content: space-evenly;
     width: 99vw;
-    height: 20vh;
+    height: 50vh;
     border-top: 1px solid gray;
+    background-color: rgba(0, 0, 0, .6);
 }
 .aside{
     display: flex;
@@ -26,6 +29,9 @@ body{
     width: 15%;
     height: 100vh;
     background-color: #FFFFFF;
+}
+.aside img{
+    margin-top: 3vh;
 }
 .main {
     display: flex;
@@ -51,12 +57,34 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    width: 10vw;
-    height: 60vh;
+    width: 15vw;
+    height: 70vh;
     row-gap: 1vh;
 }
 .navigation li{
+    display: flex;
+    justify-content: start;
+    align-items: center;
     list-style: none;
+    width: 75%;
+    height: 5vh;
+    padding-left: 2vw;
+    transition: all .3s ease;
+}
+.navigation li:first-child{
+    font-size: 3vh;
+    background-color: rgba(244, 244, 244, 1);
+    
+}
+.navigation li:not(:first-child):hover{
+    background-color: rgb(245, 245, 245);
+}
+.navigation li a{
+    text-decoration: none;
+    color: black;
+}
+.navigation li:first-child a{
+    color:  rgba(225, 71, 71, 1);
 }
 .header{
     width: 100%;
@@ -105,6 +133,10 @@ body{
     align-items: center;
 }
 .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     width: 20%;
     height: 17vh;
     background-color: #FFFFFF;
@@ -119,45 +151,157 @@ body{
     align-items: center;
     height: 54vh;
     width: 27%;
-    background-color: aliceblue;
     margin-top: 5vh;
     border-radius: 1.5vh;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px 0px;
 }
 .sector:first-child{
     overflow-y: scroll;
 }
+.sector:last-child{
+    height: 44vh;
+    overflow-y: scroll;
+}
 .sector h1{
+    width: 90%;
+    height: 8vh;
     font-weight: 400;
     margin: unset;
     padding: unset;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    /* margin-left: 2vw; */
 }
 .tasks{
+    padding: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    min-height: 10vh;
+    background-color: rgba(225, 71, 71, 0.1);
+    transition: all .3s ease;
+}
+.tasks:hover{
+    min-height: 15vh;
+}
+.tasks:hover .tasks ul{
+    display: block;
+}
+.tasks-button{
+    display: flex;
+    justify-content: start;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    width: 90%;
+    height: 10vh;
+    margin: unset;
+}
+.tasks-button button{
+    height: 10vh;
+    width: 100%;
+    border: 1px dotted rgba(225, 71, 71, 1);
+    transition: all .3s ease;
+}
+.tasks-button button:hover{
+    transform: scale(1.05);
+}
+.tasks h1{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    all: unset;
+    font-size: 1vw;
+    font-weight: 500;
+    margin-top: 0;
+    padding: 0;
+    width: 100%;
+    height: 4vh;
+    margin-left: 1vw;
+    color: rgba(225, 71, 71, 1);
+}
+.tasks li{
+    display: none;
+    font-size: 2vh;
+}
+.c-tasks{
     padding: unset;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     width: 90%;
     height: 10vh;
-    background-color: rgba(225, 71, 71, 0.1);
+    background-color: rgba(71, 71, 225, 0.1);
 }
-.tasks:last-child{
-    display: flex;
-    justify-content: space-around;
-    border: 1px dotted rgba(225, 71, 71, 1);
-    position: sticky;
-    bottom: 0;
-    background-color: transparent;
+.c-tasks li{
+    font-size: 1vh;
 }
-.tasks button{
-    height: 10vh;
-    width: 100%;
-    border: none;
-    background-color: transparent;
-}
-.tasks h1{
+.c-tasks h1{
     font-size: 1vh;
     font-weight: 500;
     margin: unset;
     padding: unset;
+}
+.c-tasks h1{
+    all: unset;
+}
+.card h1{
+    font-weight: bold;
+    font-size: 1.4vw;
+    width: 11vw;
+}
+.inner-card{
+    display: flex;
+}
+.inner-card h1{
+    font-weight: 500;
+    font-size: 1vw;
+    height: 3vh;
+    width: 8vw;
+}
+.inner-card .material-symbols-outlined{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3vw;
+    height: auto;
+}
+.panel{
+    width: 30vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.panel p{
+    width: 25vw;
+    height: 30vh;
+    color: #FFFFFF;
+}
+.panel h1{
+    width: 22vw;
+    height: 3vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+#timer-button{
+    width: 15vw;
+    height: 7vh;
+    border: none;
+    font-size: 4vh;
+    transition: all .6s ease;
+}
+#timer-button:hover{
+    transform: scale(1.02);
+    color: white;
+    background-color: green;
+}
+#arcCanvas{
+    transform: rotate(180deg);
 }
