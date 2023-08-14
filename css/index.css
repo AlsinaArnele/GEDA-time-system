@@ -32,6 +32,8 @@ body{
 }
 .aside img{
     margin-top: 3vh;
+    width: 90%;
+    height: auto;
 }
 .main {
     display: flex;
@@ -69,10 +71,11 @@ body{
     width: 75%;
     height: 5vh;
     padding-left: 2vw;
+    font-size: 1vw;
     transition: all .3s ease;
 }
 .navigation li:first-child{
-    font-size: 3vh;
+    font-size: 2vw;
     background-color: rgba(244, 244, 244, 1);
     
 }
@@ -161,6 +164,7 @@ body{
 .sector:last-child{
     height: 44vh;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .sector:nth-child(2){
     justify-content: space-evenly;
@@ -182,7 +186,7 @@ body{
 .tasks{
     padding: unset;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 90%;
@@ -191,11 +195,27 @@ body{
     background-color: rgba(225, 71, 71, 0.1);
     transition: all .3s ease;
 }
+.tasks button{
+    display: none;
+    width: 15%;
+    height: 5vh;
+    border: none;
+    color: white;
+    background-color: rgba(225, 71, 71, 1);
+    border-radius: 2.5vh;
+}
 .tasks:hover{
     min-height: 15vh;
+    flex-direction: column;
 }
-.tasks:hover li{
+.tasks:hover ul{
     display: flex;
+}
+.tasks:hover h1{
+    margin-top: 1vh;
+}
+.tasks:hover button{
+    display: block;
 }
 .tasks-button{
     display: flex;
@@ -217,31 +237,31 @@ body{
     transform: scale(1.05);
 }
 .tasks h1{
+    all: unset;
     display: flex;
     justify-content: start;
     align-items: center;
-    all: unset;
     font-size: 1.3vw;
     font-weight: 500;
-    margin-top: 1vh;
     padding: 0;
-    width: 100%;
+    width: 70%;
     height: 4vh;
     margin-left: 1vw;
     color: rgba(225, 71, 71, 1);
 }
 .tasks ul{
+    display: none;
     width: 100%;
-    height: 6vh;
-    display: flex;
+    height: auto;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: start;
 }
 .tasks li{
-    display: none;
+    /* display: block; */
     font-size: 2vh;
     transition: all .3s ease;
+    list-style: none;
 }
 .c-tasks{
     padding: unset;
@@ -249,12 +269,9 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     width: 90%;
-    min-height: 10vh;
+    min-height: 5vh;
+    max-height: 5vh;
     background-color: rgba(71, 71, 225, 0.1);
-}
-.c-tasks li{
-    display: none;
-    font-size: 1vh;
 }
 .c-tasks h1{
     display: flex;
@@ -268,10 +285,7 @@ body{
     width: 100%;
     height: 4vh;
     margin-left: 1vw;
-    color: rgba(225, 71, 71, 1);
-}
-.c-tasks h1{
-    all: unset;
+    color: rgba(14, 40, 79, 1);
 }
 .card h1{
     font-weight: bold;
@@ -328,16 +342,16 @@ body{
     border: none;
     font-size: 4vh;
     transition: all .6s ease;
-    /* display: ; */
+    display: block;
+    color: black;
+    background-color: rgb(245, 245, 245);
 }
 #timer-button:hover{
-    display: block;
     transform: scale(1.02);
     color: white;
     background-color: green;
 }
 #timer-button2:hover{
-    display: block;
     transform: scale(1.02);
     color: white;
     background-color: red;
@@ -359,7 +373,7 @@ body{
     /* top: 20vh; */
     /* left: 35vw; */
     width: 35vw;
-    height: 35vw;
+    height: 27vw;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px inset;
     z-index: 100;
     background-color:  #FFFFFF;
@@ -371,7 +385,7 @@ body{
 }
 .input:first-child input{
     width: 27vw;
-    height: 8vh;
+    height: 6vh;
     padding-left: 3vw;
 }
 .buttonss button{
@@ -387,8 +401,10 @@ body{
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.9);
+    /* background-color: rgba(255, 255, 255, 0.9); */
     /* filter: blur(30px); */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     z-index: 99;
 }
 .buttonss{

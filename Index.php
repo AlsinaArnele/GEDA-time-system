@@ -1,3 +1,49 @@
+<?php
+ include 'actions/session-check.php';
+ include 'actions/connect.php';
+ $currentDate = date("Y-m-d");
+
+ $checkSql = "SELECT * FROM `time` WHERE user_email = ? AND date = ?";
+ $checkStmt = $conn->prepare($checkSql);
+ 
+ if ($checkStmt) {
+     $checkStmt->bind_param("ss", $id, $currentDate);
+     $checkStmt->execute();
+     
+     $checkResult = $checkStmt->get_result();
+
+     if ($checkResult->num_rows > 0) {
+         $hide_button = " ";
+     }else{
+        $hide_button = "startTimer()";
+     }
+     $checkStmt->close();
+ } else {
+     $response = "Error: Statement preparation error.";
+ }
+ 
+ $existingTimeSql = "SELECT time_out FROM `time` WHERE user_email = ?";
+    $existingTimeStmt = $conn->prepare($existingTimeSql);
+    $existingTimeStmt->bind_param("s", $id);
+    $existingTimeStmt->execute();
+    $existingTimeResult = $existingTimeStmt->get_result();
+    $existingTimeData = $existingTimeResult->fetch_assoc();
+    $existingTimeStmt->close();
+
+    if (!$existingTimeData['time_out']) {
+        $hide_stop_button = "stopTimer()";
+    }else{
+        $hide_stop_button = " ";
+    }
+
+    $currentHour = date("H");
+
+if ($currentHour >= 12) {
+    $greeting = "Good afternoon";
+} else {
+    $greeting = "Good morning";
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +52,12 @@
     <title>Time System</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-</head>
-<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+</head>
+<body id="bodyID">
     <section id="content-container">
         <div class="aside">
             <img src="Images/image 1.png" alt="">
@@ -43,7 +92,7 @@
             <div class="top">
                 <div class="header">
                     <div class="nav-container">
-                        <h1>Good morning Bernard,</h1>
+                        <h1><?php echo $greeting .' '. $user_username;?>,</h1>
                         <h2>Dashboard</h2>
                     </div>
                     <div class="nav-container">
@@ -104,9 +153,9 @@
                         0:00
                     </div>
                     <div class="timer-buttonss">
-                        <button id="timer-button" onclick="startTimer()">Start</button>
-                        <button id="timer-button2" onclick="stopTimer()">Stop</button>
-                        <button id="timer-button3" onclick="stopTimer()">Reset</button>
+                        <button id="timer-button" onclick="<?php echo $hide_button;?>">Start</button>
+                        <button id="timer-button2" onclick="<?php echo $hide_stop_button;?>">Stop</button>
+                        <button id="timer-button3" onclick="pageReload()">Reset</button>
                     </div>
                 </div>
                 <div class="sector">
@@ -156,3 +205,4 @@
     </section>
 </body>
 </html>
+
