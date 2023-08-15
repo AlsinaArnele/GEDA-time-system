@@ -1,10 +1,17 @@
 <?php
 include 'connect.php';
 
-$sql = "SELECT id, title,  `description` FROM `time-system` WHERE status ='pending' ";
-$sql2 = "SELECT id, title,  `description` FROM `time-system` WHERE status ='complete' ";
-$result = $conn->query($sql);
-$result2 = $conn->query($sql2);
+$sql = "SELECT id, title,  `description` FROM `time-system` WHERE status ='pending' AND `user-email`= ? ";
+$sql2 = "SELECT id, title,  `description` FROM `time-system` WHERE status ='complete' AND `user-email`= ? ";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$stmt2 = $conn->prepare($sql2);
+$stmt2->bind_param("s", $id);
+$stmt2->execute();
+$result2 = $stmt2->get_result();;
 
 $html = "";
 $html2 = "";

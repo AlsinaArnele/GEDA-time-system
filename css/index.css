@@ -35,6 +35,18 @@ body{
     width: 90%;
     height: auto;
 }
+.nav-container:first-child div:first-child{
+    width: 5vh;
+    height: 5vh;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.nav-container:first-child div:first-child div{
+    width: 2vh;
+    height: 0;
+    border: 1px solid black;
+}
 .main {
     display: flex;
     flex-direction: column;
@@ -105,6 +117,7 @@ body{
     height: 10vh;
     margin-top: 5vh;
 }
+
 .nav-container:last-child{
     display: flex;
     align-items: center;
@@ -157,7 +170,7 @@ body{
     margin-top: 5vh;
     border-radius: 1.5vh;
 }
-.sector:first-child{
+.sector:nth-child(2){
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -166,7 +179,7 @@ body{
     overflow-y: scroll;
     overflow-x: hidden;
 }
-.sector:nth-child(2){
+.sector:nth-child(3){
     justify-content: space-evenly;
 }
 .sector h1{
@@ -182,6 +195,9 @@ body{
 }
 .sector .card{
     width: 25vw;
+}
+.sector-responsive{
+    display: none;
 }
 .tasks{
     padding: unset;
@@ -414,4 +430,124 @@ body{
 }
 #timer-display{
     font-size: 4vw;
+}
+@media screen and (max-width: 768px) {
+    #content-container{
+        height: auto;
+    }
+    .nav-container:first-child div:last-child{
+        height: 2vh;
+    }
+    .nav-container:first-child, .nav-container:last-child{
+        display: flex;
+        height: 5vh;
+    }
+    .main{
+        width: 90%;
+    }
+    .nav-container h1{
+        font-size: 1vw;
+    }
+    .aside{
+        display: none;
+    }
+    .nav-container:first-child div:first-child{
+        display: flex;
+    }
+    .top{
+        height: 35vh;
+    }
+    .header{
+        height: 10vh;
+        align-items: center;
+    }
+    .sector:nth-child(3){
+        display: none;
+    }
+    .sector{
+        width: 40vw;
+        height: 50vw;
+    }
+    .sector h1{
+        font-size: 3vw;
+    }
+    .sector-responsive{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        row-gap: 1vh;
+        align-items: center;
+        height: 30vh;
+        width: 100%;
+        margin-top: 5vh;
+        border-radius: 1.5vh;
+
+    }
+    #timer-display{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 17vh;
+        background-color: #FFFFFF;
+        border-radius: 1vh;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px inset;
+    }
+    .timer-buttonss{
+        width: 60%;
+    }
+    #timer-button,#timer-button2,#timer-button3{
+        width: 20vw;
+        height: 7vh;
+        border: none;
+        font-size: 4vh;
+        transition: all .6s ease;
+        display: block;
+        color: black;
+        background-color: rgb(245, 245, 245);
+    }
+    #timer-button:hover{
+        transform: scale(1.02);
+        color: white;
+        background-color: green;
+    }
+    #timer-button2:hover{
+        transform: scale(1.02);
+        color: white;
+        background-color: red;
+    }
+    #timer-button3{
+        display: none;
+    }
+    #timer-button3:hover{
+        transform: scale(1.02);
+        color: white;
+        background-color: blue;
+    }
+    .bottom{
+        flex-wrap: wrap;
+        height: auto;
+    }
+    .add-task{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        /* top: 20vh; */
+        /* left: 35vw; */
+        width: 35vw;
+        height: 27vw;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px inset;
+        z-index: 100;
+        background-color:  #FFFFFF;
+    }
+    
+    #timer-display{
+        font-size: 4vw;
+    }
+    #footer{
+        font-size: 1.5vh;
+    }
 }

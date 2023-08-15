@@ -23,18 +23,19 @@
  }
  
  $existingTimeSql = "SELECT time_out FROM `time` WHERE user_email = ?";
-    $existingTimeStmt = $conn->prepare($existingTimeSql);
-    $existingTimeStmt->bind_param("s", $id);
-    $existingTimeStmt->execute();
-    $existingTimeResult = $existingTimeStmt->get_result();
-    $existingTimeData = $existingTimeResult->fetch_assoc();
-    $existingTimeStmt->close();
+$existingTimeStmt = $conn->prepare($existingTimeSql);
+$existingTimeStmt->bind_param("s", $id);
+$existingTimeStmt->execute();
+$existingTimeResult = $existingTimeStmt->get_result();
+$existingTimeData = $existingTimeResult->fetch_assoc();
+$existingTimeStmt->close();
 
-    if (!$existingTimeData['time_out']) {
-        $hide_stop_button = "stopTimer()";
-    }else{
-        $hide_stop_button = " ";
-    }
+if (empty($existingTimeData) || $existingTimeData['time_out'] === null) {
+    $hide_stop_button = "stopTimer()";
+} else {
+    $hide_stop_button = "";
+}
+
 
     $currentHour = date("H");
 
@@ -53,7 +54,6 @@ if ($currentHour >= 12) {
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 </head>
@@ -63,12 +63,12 @@ if ($currentHour >= 12) {
             <img src="Images/image 1.png" alt="">
             <ul class="navigation">
                 <li><a href=""><span class="material-symbols-outlined">home</span>Home</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Prospect</a></li>
-                <li><a href="">Strategy</a></li>
-                <li><a href="">Market</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="">News</a></li>
+                <li><a href="https://gedagroup.com/about-us/">About</a></li>
+                <li><a href="https://gedagroup.com/prospects/">Prospect</a></li>
+                <li><a href="https://gedagroup.com/strategy/">Strategy</a></li>
+                <li><a href="https://gedagroup.com/market/">Market</a></li>
+                <li><a href="https://gedagroup.com/contact-us/">Contact</a></li>
+                <li><a href="https://gedagroup.com/news/">News</a></li>
             </ul>
         </div>
         <div id="add-task" class="background">
@@ -89,11 +89,19 @@ if ($currentHour >= 12) {
         </div>
 
         <div class="main">
+           
             <div class="top">
                 <div class="header">
                     <div class="nav-container">
-                        <h1><?php echo $greeting .' '. $user_username;?>,</h1>
-                        <h2>Dashboard</h2>
+                        <div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div>
+                            <h1><?php echo $greeting .' '. $user_username;?>,</h1>
+                            <h2>Dashboard</h2>
+                        </div>
                     </div>
                     <div class="nav-container">
                         <h1 id="currenttime"></h1>
@@ -104,21 +112,24 @@ if ($currentHour >= 12) {
                     <div class="card">
                         <h1>Hours this week</h1>
                         <div class="inner-card">
-                            <h1> 40Hrs </h1>
+                            <h1><?php
+                                    include 'actions/analytics.php';
+                                    echo "$hours:$minutes:$seconds";
+                                ?> </h1>
                             <span class="material-symbols-outlined">alarm</span>
                         </div>
                     </div>
                     <div class="card">
                         <h1>Completed tasks</h1>
                         <div class="inner-card">
-                            <h1>15 Completed</h1>
+                            <h1><?php echo $completeTasks;?> Completed</h1>
                             <span class="material-symbols-outlined">event_note</span>
                         </div>
                     </div>
                     <div class="card">
                         <h1>Pending tasks</h1>
                         <div class="inner-card">
-                            <h1> 6 pending</h1>
+                            <h1><?php echo $pendingTasks;?> pending</h1>
                             <span class="material-symbols-outlined">event_note</span>
                         </div>
                     </div>
@@ -132,6 +143,16 @@ if ($currentHour >= 12) {
                 </div>
             </div>
             <div class="bottom">
+                <div class="sector-responsive">
+                    <div id="timer-display" class="card">
+                        00:00:00
+                    </div>
+                    <div class="timer-buttonss">
+                        <button id="timer-button" onclick="<?php echo $hide_button;?>">Start</button>
+                        <button id="timer-button2" onclick="<?php echo $hide_stop_button;?>">Stop</button>
+                        <button id="timer-button3" onclick="pageReload()">Reset</button>
+                    </div>
+                </div>
                 <div class="sector">
                     <H1>Pending tasks</H1>
                     <!-- <div class="tasks">
@@ -150,7 +171,7 @@ if ($currentHour >= 12) {
                 </div>
                 <div class="sector">
                     <div id="timer-display" class="card">
-                        0:00
+                        00:00:00
                     </div>
                     <div class="timer-buttonss">
                         <button id="timer-button" onclick="<?php echo $hide_button;?>">Start</button>
@@ -205,4 +226,5 @@ if ($currentHour >= 12) {
     </section>
 </body>
 </html>
+<script src="js/main.js"></script>
 
