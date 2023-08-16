@@ -3,7 +3,8 @@ session_start();
 session_regenerate_id();
 if(!isset($_SESSION['user']))
 {
-    header("Location:index.php");
+    $dca = "https://portal.dotconnectafrica.org/index.php";
+    header("Location: $dca");
 }
 $id = $_SESSION['user'];
 include 'connect.php';

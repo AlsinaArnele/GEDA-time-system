@@ -20,6 +20,7 @@ body{
     height: 50vh;
     border-top: 1px solid gray;
     background-color: rgba(0, 0, 0, .6);
+    font-size: 1vw;
 }
 .aside{
     display: flex;
@@ -29,6 +30,9 @@ body{
     width: 15%;
     height: 100vh;
     background-color: #FFFFFF;
+}
+#myAside{
+    display: flex;
 }
 .aside img{
     margin-top: 3vh;
@@ -110,12 +114,15 @@ body{
 }
 .nav-container:first-child{
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    width: 20%;
+    align-items: center;
+    justify-content: start;
+    width: 40%;
     height: 10vh;
     margin-top: 5vh;
+}
+.nav-container div{
+    width: 50%;
+    height: 10vh;
 }
 
 .nav-container:last-child{
@@ -179,7 +186,7 @@ body{
     overflow-y: scroll;
     overflow-x: hidden;
 }
-.sector:nth-child(3){
+.sector:first-child{
     justify-content: space-evenly;
 }
 .sector h1{
@@ -431,7 +438,19 @@ body{
 #timer-display{
     font-size: 4vw;
 }
+#burger {
+    width: 2vw;
+    height: 2vw;
+    color: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (max-width: 768px) {
+    #burger{
+        display: flex;
+    }
     #content-container{
         height: auto;
     }
@@ -442,14 +461,21 @@ body{
         display: flex;
         height: 5vh;
     }
+    .aside{
+        position: absolute;
+        width: 30vw;
+        left: -30vw;
+        transition: .3s ease;
+    }
     .main{
         width: 90%;
     }
     .nav-container h1{
         font-size: 1vw;
     }
-    .aside{
+    #myAside{
         display: none;
+        z-index: 1000;
     }
     .nav-container:first-child div:first-child{
         display: flex;
@@ -461,9 +487,6 @@ body{
         height: 10vh;
         align-items: center;
     }
-    .sector:nth-child(3){
-        display: none;
-    }
     .sector{
         width: 40vw;
         height: 50vw;
@@ -471,7 +494,7 @@ body{
     .sector h1{
         font-size: 3vw;
     }
-    .sector-responsive{
+    .sector:first-child{
         display: flex;
         flex-direction: column;
         justify-content: space-around;

@@ -59,7 +59,7 @@ if ($currentHour >= 12) {
 </head>
 <body id="bodyID">
     <section id="content-container">
-        <div class="aside">
+        <div class="aside" id="myAside">
             <img src="Images/image 1.png" alt="">
             <ul class="navigation">
                 <li><a href=""><span class="material-symbols-outlined">home</span>Home</a></li>
@@ -93,10 +93,8 @@ if ($currentHour >= 12) {
             <div class="top">
                 <div class="header">
                     <div class="nav-container">
-                        <div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                        <div id="burger" onclick="toggleBurger()">
+                            &#9776;
                         </div>
                         <div>
                             <h1><?php echo $greeting .' '. $user_username;?>,</h1>
@@ -143,10 +141,11 @@ if ($currentHour >= 12) {
                 </div>
             </div>
             <div class="bottom">
-                <div class="sector-responsive">
+                <div class="sector">
                     <div id="timer-display" class="card">
                         00:00:00
                     </div>
+                    <script src="js/main.js"></script>
                     <div class="timer-buttonss">
                         <button id="timer-button" onclick="<?php echo $hide_button;?>">Start</button>
                         <button id="timer-button2" onclick="<?php echo $hide_stop_button;?>">Stop</button>
@@ -169,16 +168,7 @@ if ($currentHour >= 12) {
                         <Button onclick="addTask()">Add new</Button>
                     </div>
                 </div>
-                <div class="sector">
-                    <div id="timer-display" class="card">
-                        00:00:00
-                    </div>
-                    <div class="timer-buttonss">
-                        <button id="timer-button" onclick="<?php echo $hide_button;?>">Start</button>
-                        <button id="timer-button2" onclick="<?php echo $hide_stop_button;?>">Stop</button>
-                        <button id="timer-button3" onclick="pageReload()">Reset</button>
-                    </div>
-                </div>
+
                 <div class="sector">
                     <h1>Completed tasks</h1>
                     <?php
@@ -227,4 +217,16 @@ if ($currentHour >= 12) {
 </body>
 </html>
 <script src="js/main.js"></script>
+<script>
+    function toggleBurger(){
+        const aside = document.getElementById('myAside');
+        if(aside.style.display == 'none'){
+            aside.style.display = 'flex';
+            aside.style.left = '0';
+        }else{
+            aside.style.display = 'none';
+        }
+    }
+    
+</script>
 
