@@ -3,7 +3,7 @@
  include 'actions/connect.php';
  $currentDate = date("Y-m-d");
 
- $checkSql = "SELECT * FROM `time` WHERE user_email = ? AND date = ?";
+ $checkSql = "SELECT time_in FROM `time` WHERE user_email = ? AND date = ?";
  $checkStmt = $conn->prepare($checkSql);
  
  if ($checkStmt) {
@@ -21,22 +21,26 @@
  } else {
      $response = "Error: Statement preparation error.";
  }
+
+ $checkSql2 = "SELECT time_out FROM `time` WHERE user_email = ? AND date = ?";
+ $checkStmt2 = $conn->prepare($checkSql2);
  
- $existingTimeSql = "SELECT time_out FROM `time` WHERE user_email = ?";
-$existingTimeStmt = $conn->prepare($existingTimeSql);
-$existingTimeStmt->bind_param("s", $id);
-$existingTimeStmt->execute();
-$existingTimeResult = $existingTimeStmt->get_result();
-$existingTimeData = $existingTimeResult->fetch_assoc();
-$existingTimeStmt->close();
+ if ($checkStmt2) {
+     $checkStmt2->bind_param("ss", $id, $currentDate);
+     $checkStmt2->execute();
+     
+     $checkResult2 = $checkStmt2->get_result();
 
-if (empty($existingTimeData) || $existingTimeData['time_out'] === null) {
-    $hide_stop_button = "stopTimer()";
-} else {
-    $hide_stop_button = "";
-}
-
-
+     if ($checkResult2->num_rows > 0) {
+         $hide_stop_button = " ";
+     }else{
+        $hide_stop_button = "stopTimer()";
+     }
+     $checkStmt2->close();
+ } else {
+     $response = "Error: Statement preparation error.";
+ }
+ 
     $currentHour = date("H");
 
 if ($currentHour >= 12) {
@@ -61,6 +65,11 @@ if ($currentHour >= 12) {
     <section id="content-container">
         <div class="aside" id="myAside">
             <img src="Images/image 1.png" alt="">
+            <div id="burger" onclick="toggleBurger()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <ul class="navigation">
                 <li><a href=""><span class="material-symbols-outlined">home</span>Home</a></li>
                 <li><a href="https://gedagroup.com/about-us/">About</a></li>
@@ -94,7 +103,9 @@ if ($currentHour >= 12) {
                 <div class="header">
                     <div class="nav-container">
                         <div id="burger" onclick="toggleBurger()">
-                            &#9776;
+                            <div></div>
+                            <div></div>
+                            <div></div>
                         </div>
                         <div>
                             <h1><?php echo $greeting .' '. $user_username;?>,</h1>

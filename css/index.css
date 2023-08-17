@@ -443,8 +443,13 @@ body{
     height: 2vw;
     color: black;
     display: none;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#burger div{
+    width: 2vh;
+    height: 0vh;
+    border: 1px solid black;
 }
 
 @media screen and (max-width: 768px) {
@@ -453,6 +458,41 @@ body{
     }
     #content-container{
         height: auto;
+    }
+    .navigation{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        width: 30vw;
+        height: 70vh;
+        row-gap: 1vh;
+    }
+    .navigation li{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        list-style: none;
+        width: 75%;
+        height: 5vh;
+        padding-left: 2vw;
+        font-size: 2vh;
+        transition: all .3s ease;
+    }
+    .navigation li:first-child{
+        font-size: 2vw;
+        background-color: rgba(244, 244, 244, 1);
+        
+    }
+    .navigation li:not(:first-child):hover{
+        background-color: rgb(245, 245, 245);
+    }
+    .navigation li a{
+        text-decoration: none;
+        color: black;
+    }
+    .navigation li:first-child a{
+        color:  rgba(225, 71, 71, 1);
     }
     .nav-container:first-child div:last-child{
         height: 2vh;
